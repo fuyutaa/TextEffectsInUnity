@@ -1,8 +1,8 @@
+// By Madalaski on Youtube : https://www.youtube.com/watch?v=FgWVW2PL1bQ
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-
 public class letterWobble : MonoBehaviour
 {
     TMP_Text textMesh;
