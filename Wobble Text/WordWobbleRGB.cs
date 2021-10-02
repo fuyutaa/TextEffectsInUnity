@@ -1,4 +1,3 @@
-// By Madalaski on Youtube : https://www.youtube.com/watch?v=FgWVW2PL1bQ
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,7 +6,6 @@ using TMPro;
 public class WordWobbleRGB : MonoBehaviour
 {
     TMP_Text textMesh;
-
     Mesh mesh;
 
     Vector3[] vertices;
@@ -15,7 +13,12 @@ public class WordWobbleRGB : MonoBehaviour
     List<int> wordIndexes;
     List<int> wordLengths;
 
+    public bool modifyingColor;
     public Gradient rainbow;
+
+    [Header("Math movement values")]
+    public float hMovementSin = 3.3f;
+    public float vMovementCos = 2.5f;
 
     // Start is called before the first frame update
     void Start()
@@ -54,15 +57,19 @@ public class WordWobbleRGB : MonoBehaviour
 
                 int index = c.vertexIndex;
 
-                colors[index] = rainbow.Evaluate(Mathf.Repeat(Time.time + vertices[index].x*0.001f, 1f));
-                colors[index + 1] = rainbow.Evaluate(Mathf.Repeat(Time.time + vertices[index + 1].x*0.001f, 1f));
-                colors[index + 2] = rainbow.Evaluate(Mathf.Repeat(Time.time + vertices[index + 2].x*0.001f, 1f));
-                colors[index + 3] = rainbow.Evaluate(Mathf.Repeat(Time.time + vertices[index + 3].x*0.001f, 1f));
+                if(modifyingColor) // If color modification is activated
+                {
+                    colors[index] = rainbow.Evaluate(Mathf.Repeat(Time.time + vertices[index].x*0.001f, 1f));
+                    colors[index + 1] = rainbow.Evaluate(Mathf.Repeat(Time.time + vertices[index + 1].x*0.001f, 1f));
+                    colors[index + 2] = rainbow.Evaluate(Mathf.Repeat(Time.time + vertices[index + 2].x*0.001f, 1f));
+                    colors[index + 3] = rainbow.Evaluate(Mathf.Repeat(Time.time + vertices[index + 3].x*0.001f, 1f));
+                }
 
+                // Movement
                 vertices[index] += offset;
                 vertices[index + 1] += offset;
                 vertices[index + 2] += offset;
-                vertices[index + 3] += offset; 
+                vertices[index + 3] += offset;                
             }
         }
 
@@ -74,6 +81,6 @@ public class WordWobbleRGB : MonoBehaviour
     }
 
     Vector2 Wobble(float time) {
-        return new Vector2(Mathf.Sin(time*3.3f), Mathf.Cos(time*2.5f));
+        return new Vector2(Mathf.Sin(time*hMovementSin), Mathf.Cos(time*vMovementCos));
     }
 }

@@ -1,23 +1,35 @@
-// By Madalaski on Youtube : https://www.youtube.com/watch?v=FgWVW2PL1bQ
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+
 public class letterWobble : MonoBehaviour
 {
     TMP_Text textMesh;
-
     Mesh mesh;
-
+    
     Vector3[] vertices;
 
-    // Start is called before the first frame update
+    [Header("Math movement values")]
+    public float hMovementCos = 3.3f;
+    public float vMovementCos = 2.5f;
+    /*
+    - Scared text :
+        - hMovementCos = 19f
+        - vMovementCos = 10f
+    - Down text :
+        - hMovementCos = 10f
+        - vMovementCos = 10f
+    - Sad text :
+        - hMovementCos = 7f
+        - vMovementCos = 5f
+    */
+
     void Start()
     {
         textMesh = GetComponent<TMP_Text>();
     }
 
-    // Update is called once per frame
     void Update()
     {
         textMesh.ForceMeshUpdate();
@@ -42,6 +54,6 @@ public class letterWobble : MonoBehaviour
     }
 
     Vector2 Wobble(float time) {
-        return new Vector2(Mathf.Sin(time*3.3f), Mathf.Cos(time*2.5f));
+        return new Vector2(Mathf.Sin(time*hMovementCos), Mathf.Cos(time*vMovementCos));
     }
 }
