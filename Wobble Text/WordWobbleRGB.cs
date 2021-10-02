@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class WordWobble : MonoBehaviour
+public class WordWobbleRGB : MonoBehaviour
 {
     TMP_Text textMesh;
 
@@ -62,9 +62,7 @@ public class WordWobble : MonoBehaviour
                 vertices[index] += offset;
                 vertices[index + 1] += offset;
                 vertices[index + 2] += offset;
-                vertices[index + 3] += offset;
-
-                
+                vertices[index + 3] += offset; 
             }
         }
 
