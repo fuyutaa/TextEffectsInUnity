@@ -20,7 +20,6 @@ public class WordWobbleRGB : MonoBehaviour
     public float hMovementSin = 3.3f;
     public float vMovementCos = 2.5f;
 
-    // Start is called before the first frame update
     void Start()
     {
         textMesh = GetComponent<TMP_Text>();
@@ -37,7 +36,6 @@ public class WordWobbleRGB : MonoBehaviour
         wordLengths.Add(s.Length - wordIndexes[wordIndexes.Count - 1]);
     }
 
-    // Update is called once per frame
     void Update()
     {
         textMesh.ForceMeshUpdate();
